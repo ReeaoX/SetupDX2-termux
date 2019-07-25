@@ -1,0 +1,8 @@
+alias gc='git clone'
+alias gcm='git commit -m'
+alias ga='git add'
+alias gaa='git add --all'
+alias gcob='git checkout -b'
+alias gco='git checkout'
+alias gstat='git status'
+alias gpush='git push -u origin'

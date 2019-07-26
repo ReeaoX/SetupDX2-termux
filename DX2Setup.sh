@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# SCRIPT INFO:
+#	-	Vanilla Setup !!
+#	-	Script creates all the directories, rc files, and edits
+#		.bashrc and/or .zshrc
+#	-	It DOES NOT install all the other funxctions / scripts
 
 ## STEP 01 - LOAD VARS ##
 

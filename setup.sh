@@ -2,7 +2,10 @@
 
 SETUPDIR=$PWD
 
-
+# VARS:	LOADMYRC
+# VALU:	This var is used to edit .bashrc. Its value is what gets
+#		added to the file
+#
 LOADMYRC="""
 ### BEG - LOAD .DX2RC ###
 if [ \"\$DX2DIGITAL\" != 'loaded' ]; then
@@ -13,6 +16,8 @@ if [ \"\$DX2DIGITAL\" != 'loaded' ]; then
 fi
 ### END - LOAD .DX2RC ###
 """
+
+
 
 if [ ! -d "$HOME/.DX2" ]; then
 	cp -r ./.DX2 "$HOME/"

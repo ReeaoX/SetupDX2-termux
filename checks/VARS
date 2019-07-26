@@ -1,0 +1,49 @@
+#!/bin/bash
+
+echo en "\n\033[4mChecks:\033[m\n\n"
+echo -e "\033[01mＣｈｅｃｋｉｎｇ：\033[m\n"
+# CHECKS FOR ALL VARS
+echo -en "\033[01;38;5;15m[ \033[01;38;5;190m⌛\033[01;38;5;15m]\033[m\t...VARs are loaded\r"
+if [ ! $DX2 ] || [ ! $DX2RC ] || [ ! $DX2BIN ] || [ ! $DX2FUNCS ] || [ ! $DX2TMP ] || [ ! $DX2BAK ] || [ ! $DX2GIT ] || [ ! $DX2FILES ] || [ ! $DX2ALIASES ]; then
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;196m✖ \033[01;38;5;15m]\033[m\tOne or more VARs is missing."
+else
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;46m✔ \033[01;38;5;15m]\033[m\tAll VARs were found"
+fi
+
+# CHECKS FOR VARs VALUE
+echo -en "\033[01;38;5;15m[ \033[01;38;5;190m⌛\033[01;38;5;15m]\033[m\t...VARs value\r"
+if [ "$DX2" != "$HOME/.DX2" ] || [ "$DX2RC" != "$HOME/.DX2/rc" ] || [ "$DX2BIN" != "$HOME/.DX2/bin" ] || [ "$DX2FUNCS" != "$HOME/.DX2/functions" ] || [ "$DX2TMP" != "$HOME/.DX2/temp" ] || [ "$DX2BAK" != "$HOME/.DX2/backups" ] || [ "$DX2GIT" != "$HOME/.DX2/git" ] || [ "$DX2FILES" != "$HOME/.DX2/files" ] || [ "$DX2ALIASES" != "$HOME/.DX2/aliases" ]; then
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;196m✖ \033[01;38;5;15m]\033[m\tOne or more VARs values is incorrect."
+else
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;46m✔ \033[01;38;5;15m]\033[m\tAll VARs values are correct"
+fi
+#
+#	echo -en """
+#ERROR: One or more VARs value is wrong.
+#"""
+#else
+#	echo -en """
+#All VARs values are correct
+#"""
+#fi
+#
+#
+
+# CHECKS FOR ALL DIRs
+echo -en "\033[01;38;5;15m[ \033[01;38;5;190m⌛\033[01;38;5;15m]\033[m\t...Directories\r"
+if [ ! -d $DX2 ] || [ ! -d $DX2RC ] || [ ! -d $DX2BIN ] || [ ! -d $DX2FUNCS ] || [ ! -d $DX2TMP ] || [ ! -d $DX2BAK ] || [ ! -d $DX2GIT ] || [ ! -d $DX2FILES ] || [ ! -d $DX2ALIASES ]; then
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;196m✖ \033[01;38;5;15m]\033[m\tOne or more DIRs is missing."
+else
+	echo -e "\033[01;38;5;15m[ \033[01;38;5;46m✔ \033[01;38;5;15m]\033[m\tAll DIRs were found"
+fi
+echo -e "\n\n"
+
+#	echo -en """
+#ERROR: One or more DIRs is missing.
+#"""
+#else
+#	echo -en """
+#All DIRs were found
+#"""
+#fi
+

@@ -39,4 +39,3 @@ for ALIASESFILES in $DX2ALIASES/*; do
 		source "$ALIASESFILES";
 	fi
 done
-

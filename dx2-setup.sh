@@ -1,6 +1,6 @@
 #!/bin/bash
 
-__DXVERSION__=0.1
+__DXVERSION__=2.1
 
 
 ### FUNCTION - __check_dx2rc() ###

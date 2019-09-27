@@ -45,7 +45,7 @@ echo -en """"$CHECKW" \$DX2
 
 """;
 tput rc;
-sleep .1;
+sleep .4;
 if [ $DX2 ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -56,7 +56,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2BIN ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -67,7 +67,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2DATA ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -78,7 +78,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2RC ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -89,7 +89,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2BAK ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -100,7 +100,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2TMP ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -111,7 +111,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2GIT ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -122,7 +122,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2FUNCS ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -133,7 +133,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2ALIASES ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -144,7 +144,7 @@ else
 	tput cud 1
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ $DX2SHORTCUTS ]; then
 	echo -en "$CHECKY"
 	tput cud 3
@@ -155,16 +155,117 @@ else
 	tput cud 3
 	printf '\r'
 fi
-export DX2="$HOME/.DX2"
-export DX2BIN="$DX2/bin"
-export DX2FILES="$DX2/files"
-export DX2RC="$DX2/rc"
-export DX2BAK="$DX2/backups"
-export DX2TMP="$DX2/temp"
-export DX2GIT="$DX2/git"
-export DX2FUNCS="$DX2/functions"
-export DX2ALIASES="$DX2/aliases"
-sleep .1;
+sleep .4;
+if [ -d $HOME/.DX2 ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/bin ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/data ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/rc ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/backups ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/temp ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/git ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/functions ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/aliases ]; then
+	echo -en "$CHECKY"
+	tput cud 1
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 1
+	printf '\r'
+fi
+sleep .4;
+if [ -d $DX2/.Shortcuts ]; then
+	echo -en "$CHECKY"
+	tput cud 3
+	printf '\r'
+else
+	echo -en "$CHECKN"
+	SETUPREQ=1
+	tput cud 3
+	printf '\r'
+fi
+sleep .4;
 if [ -f $HOME/.dx2rc ]; then
 	echo -en "$CHECKY"
 	tput cud 3
@@ -175,7 +276,7 @@ else
 	tput cud 3
 	printf '\r'
 fi
-sleep .1;
+sleep .4;
 if [ ! -f $HOME/.bashrc ]; then
 	echo -en "$CHECKY"
 	tput cud 1
@@ -192,7 +293,7 @@ else
 		printf '\r'
 	fi
 fi
-sleep .1;
+sleep .4;
 if [ ! -f $HOME/.zshrc ]; then
 	echo -en "$CHECKY"
 	tput cud 1

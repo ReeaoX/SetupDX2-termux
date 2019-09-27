@@ -1,0 +1,11 @@
+ -	changes version number
+ -	changed code that checks if dx2setup is installed to check for $DX2VERSION
+	 -	displays the value when showing what version is installed
+ -	Changed option 1 to:	Reinstall/update
+ -	changes option 2 to:	install addons
+ -	changed opt 3 to:	Check for updates
+ -	added help and exit options
+ -	added colors to menu opts
+ 
+
+ 

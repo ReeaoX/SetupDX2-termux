@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.1
+__DXVERSION__=0.1
 
 
 ### FUNCTION - __check_dx2rc() ###
@@ -43,6 +43,7 @@ function __check_dir(){
 dx2rcfile="""## Load VARs
 #
 export DX2=\"\$HOME/.DX2\"
+export DX2VERSION="$__DXVERSION__"
 export DX2BIN=\"\$DX2/bin\"
 export DX2DATA=\"\$DX2/data\"
 export DX2RC=\"\$DX2/rc\"

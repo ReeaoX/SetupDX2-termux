@@ -1,6 +1,4 @@
-#!/bin/bash
-
-__DXVERSION__=2.1
+__DXVERSION__=2.1       # This should be loaded in the main setup script
 
 
 ### FUNCTION - __check_dx2rc() ###
@@ -142,3 +140,7 @@ fi
 	fi
 fi
 
+clear
+unset -f __check_dir __check_dx2rc
+test -f $HOME/.dx2rc && echo '.dx2rc found'; source $HOME/.dx2rc || echo 'missing .dx2rc'
+test -d $DX2 && echo '\$DX2 found' || echo '$DX2 not found'

@@ -24,6 +24,9 @@ function __ANYKEY(){
     read
     case "$REPLY" in
         'q'|'Q')
+			echo -en """
+Exiting ...
+"""
             return
             ;;
         *)

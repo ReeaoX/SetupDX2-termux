@@ -47,27 +47,33 @@ fi
 
 ## Load everything in $DX2RC
 #
-for RCFILES in $DX2RC/*; do
-	if [ -r \"$RCFILES\" ]; then
-		source \"$RCFILES\";
-	fi
-done
+if test "$(ls $DX2RC)" 2&>/dev/null; then
+	for RCFILES in $DX2RC/*; do
+		if [ -r \"$RCFILES\" ]; then
+			source \"$RCFILES\";
+		fi
+	done
+fi
 
 ## Load everything in $DX2FUNCS
 #
-for FUNCSFILES in $DX2FUNCS/*; do
-	if [ -r \"$FUNCSFILES\" ]; then
-		source \"$FUNCSFILES\";
-	fi
-done
-
+if test "$(ls $DX2FUNCS)" 2&>/dev/null; then
+	for FUNCSFILES in $DX2FUNCS/*; do
+		if [ -r \"$FUNCSFILES\" ]; then
+			source \"$FUNCSFILES\";
+		fi
+	done
+fi
 ## Load everything in $DX2ALIASES
 #
-for ALIASESFILES in $DX2ALIASES/*; do
-	if [ -r \"$ALIASESFILES\" ]; then
-		source \"$ALIASESFILES\";
-	fi
-done""")
+if test "$(ls $DX2ALIASES)" 2&>/dev/null; then
+	for ALIASESFILES in $DX2ALIASES/*; do
+		if [ -r \"$ALIASESFILES\" ]; then
+			source \"$ALIASESFILES\";
+		fi
+	done
+fi
+""")
 
 def __createdir(x):
 	dir = x

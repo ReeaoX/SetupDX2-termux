@@ -1,0 +1,73 @@
+function newsh(){
+	function execyn(){
+		echo -en "\n\033[00;01mMake script executable ?\n[\033[32my\033[37m/\033[31mN\033[37m]:\033[m "
+#		echo -en "Make script executable ?\n[y/N]: "
+		read
+		case $REPLY in
+			'y'|'Y')
+				chmod u+x "$filename"
+#			nano +3,0 "$filename"
+				;;
+			'n'|'N'|'')
+				;;
+			*)
+				clear
+				execyn
+				;;
+		esac
+	}
+	filename=$1
+	if [ -f "$filename" ]; then
+		echo -en """
+\033[00;01;38;5;196mERROR\033[00;01m: Filename already exists.
+
+Please try again with another filename.\033[m
+
+"""
+#		echo "Filename already exists"
+#		read
+		return
+	else
+		echo -e "#!/bin/bash\n" > "$filename"
+		execyn
+		nano +3,0 "$filename"	
+	fi
+	unset filename
+	unset -f execyn
+}
+
+function newpy(){
+	function execyn(){
+		echo -en "\n\033[00;01mMake script executable ?\n[\033[32my\033[37m/\033[31mN\033[37m]:\033[m "
+		read
+		case $REPLY in
+			'y'|'Y')
+				chmod u+x "$filename"
+#			nano +3,0 "$filename"
+				;;
+			'n'|'N'|'')
+				;;
+			*)
+				clear
+				execyn
+				;;
+		esac
+	}
+	filename=$1
+	if [ -f "$filename" ]; then
+		echo -en """
+\033[00;01;38;5;196mERROR\033[00;01m: Filename already exists.
+
+Please try again with another filename.\033[m
+
+"""
+#		read
+		return
+	else
+		echo -e "#!/usr/bin/env python3\n" > "$filename"
+		execyn
+		nano +3,0 "$filename"	
+	fi
+	unset filename
+	unset -f execyn
+}

@@ -27,7 +27,7 @@ if [ -f ~/.dx2rc ]; then
 fi
 ### END - LOAD DX2RC ###
 """
-	dx2rc = (HOME + '/.dx2rc')
+	dx2rc = (vars.HOME + '/.dx2rc')
 	dx2rx = ("""## Load VARs
 #
 export DX2=\"$HOME/.DX2\"
@@ -39,7 +39,7 @@ export DX2TMP=\"$DX2/temp\"
 export DX2GIT=\"$DX2/git\"
 export DX2FUNCS=\"$DX2/functions\"
 export DX2ALIASES=\"$DX2/aliases\"
-export DX2VERSION=""" + str(__VERSION__) + """
+export DX2VERSION=""" + str(vars.__VERSION__) + """
 
 ## Update PATH
 #
@@ -79,7 +79,7 @@ fi
 	
 COLS, LINES = shutil.get_terminal_size()
 
-class setupfuncs():
+class funcs():
 	def createdir(x):
 		dir = x
 		if os.path.exists(dir) == False:
@@ -91,16 +91,16 @@ class setupfuncs():
 
 	def install():
 		# create dirs
-		setupfuncs.createdir(vars.DX2)
-		setupfuncs.createdir(vars.DX2BIN)
-		setupfuncs.createdir(vars.DX2RC)
-		setupfuncs.createdir(vars.DX2FUNCS)
-		setupfuncs.createdir(vars.DX2DATA)
-		setupfuncs.createdir(vars.DX2BAK)
-		setupfuncs.createdir(vars.DX2AKA)
-		setupfuncs.createdir(vars.DX2TMP)
-		setupfuncs.createdir(vars.DX2GIT)
-		setupfuncs.createdir(vars.DX2SHORTCUTS)
+		funcs.createdir(vars.DX2)
+		funcs.createdir(vars.DX2BIN)
+		funcs.createdir(vars.DX2RC)
+		funcs.createdir(vars.DX2FUNCS)
+		funcs.createdir(vars.DX2DATA)
+		funcs.createdir(vars.DX2BAK)
+		funcs.createdir(vars.DX2AKA)
+		funcs.createdir(vars.DX2TMP)
+		funcs.createdir(vars.DX2GIT)
+		funcs.createdir(vars.DX2SHORTCUTS)
 
 ###############
 # create dx2rd

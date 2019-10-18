@@ -191,18 +191,20 @@ class install():
 	def editshellrc():
 		tools.subtitle("Editing Shell's rc file")
 		print(' \033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m Detecting Shell', end='')
-		print(
+		if os.getenv('BASH') is not None:
+			SHELL = 'bash'
+			SHELLRC = (HOME + '/.' + str(SHELL) + 'rc')
+		
 	def install():
 		tools.titlebar('DX2 Setup', 'bg', 'fg')
 		install.dirs()
 		install.dx2rc()
-		
-		
-			
-			
+
+
+
 #\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m
 #\r\033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m]\033[m
 #\r\033[00;01;38;5;196m[\033[00;01m✖\033[00;01;38;5;196m]\033[m
-			
+
 #funcs.detectdx()
 install.install()

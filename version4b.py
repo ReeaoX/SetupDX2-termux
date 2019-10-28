@@ -209,20 +209,20 @@ class install():
 		else:
 			print('Shell not found' + '\r' + ICONX)
 		print('\t' + ICONWAIT + ' Searching for \033[00;38;5;51m' + str(SHELLRC) + '\033[00;01m: \033[m', end='')
-        # if shellrc file exists:
+		# if shellrc file exists:
 		if os.path.exists(SHELLRC) == True:
-		    print('\033[00;01;38;5;46mFound\033[m\r\t' + ICONCHECK)
-		    print('\t' + ICONWAIT + ' Creating backup: ', end='')
-		    shutil.copyfile(SHELLRC, DX2BAK + '/.' + str(SHELL) + 'rc')
-		    print('\033[00;01;38;5;46m DONE \033[m\r\t' + ICONCHECK)
-        # if shellrc does NOT exist
+			print('\033[00;01;38;5;46mFound\033[m\r\t' + ICONCHECK)
+			print('\t' + ICONWAIT + ' Creating backup: ', end='')
+			shutil.copyfile(SHELLRC, DX2BAK + '/.' + str(SHELL) + 'rc')
+			print('\033[00;01;38;5;46m DONE \033[m\r\t' + ICONCHECK)
+		# if shellrc does NOT exist
 		else:
-	        print('\033[00;01;38;5;196mNot Found\033[m\r\t' + ICONX)
-            print('\t' + ICONWAIT + " Creating file: ", end='')
-            f = open(SHELLRC, "w")
-            f.write(loaddx2rc)
-            f.close()
-            print('\033[00;01;38;5;46m DONE \033[m\r\t' + ICONCHECK)
+			print('\033[00;01;38;5;196mNot Found\033[m\r\t' + ICONX)
+			print('\t' + ICONWAIT + " Creating file: ", end='')
+			f = open(SHELLRC, "w")
+			f.write(loaddx2rc)
+			f.close()
+			print('\033[00;01;38;5;46m DONE \033[m\r\t' + ICONCHECK)
 
 
 	def install():

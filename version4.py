@@ -24,7 +24,14 @@ DX2SHORTCUTS = (DX2 + '/.Shortcuts')
 
 print('')
 
-class files():
+class files:
+	loaddx2rc = ("""
+### BEG - LOAD DX2RC ###
+if [ -f ~/.dx2rc ]; then
+	. ~/.dx2rc;
+fi
+### END - LOAD DX2RC ###
+""")
 	dx2rc = ("""## Load VARs
 #
 export DX2="$HOME/.DX2"
@@ -78,6 +85,22 @@ fi
 export CDPATH=~/.Shortcuts
 """)
 
+class stringsforfiles:
+	modifiedcd = ("""cd(){
+	builtin cd $*
+	LC_COLLATE='C' \ls -ACw $COLUMNS --color=always --group-directories-first
+}""")
+	defaultls = ("""export LS_OPTS="-C -w \$COLUMNS --color=always --group-directories-first"
+export LC_COLLATE='C'
+
+alias ls="\ls $LS_OPTS"
+alias l=ls
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -Al'
+""")
+
+
 class tools():
 	def titlebar(x, y, z):
 		TITLE = str(x)
@@ -100,7 +123,7 @@ class tools():
 
 
 
-class funcs():
+class funcs:
 	def checkdirs(x):
 		dirs = str(x)
 		shortdir = re.sub(HOME, '~', dirs)
@@ -113,7 +136,7 @@ class funcs():
 			os.mkdir(dirs)
 			print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
 		del dirs
-	
+
 	def detectdx():
 		init = int('0')
 		print("Checking system for any previous versions of DX2 Setup: ")
@@ -180,14 +203,33 @@ class install():
 	def dx2rc():
 		tools.subtitle('Creating ~/.dx2rc')
 		print(' \033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m Creating \033[38;5;51m~/.dx2rc', end='')
-#		if os.path.exists(HOME + '/.dx2rc') == True:
-#			print('\r \033[00;01;38;5;51m[\033[00;01mi\033[00;01;38;5;51m] \033[m')
-#			print('\t\033[00;01;32mDirectory already exists.')
-#		else:
 		f = open(HOME + '/.dx2rc', "w")
 		f.write(files.dx2rc)
 		f.close()
 		print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
+	def bakbashrc():
+		'''
+		If ~/.bashrc is found, copy the file into $DX2BAK
+		'''
+		SHELLRC = (HOME + '/.bashrc')
+		if os.path.exists(SHELLRC) == True:
+			shutil.copyfile(SHELLRC, DX2BAK + '/.bashrc')
+	def editbashrc():
+		'''
+		Checks to see if .bashrc has been edited to load .dx2rc or
+		not. If not, create a new file with the old .bashrc files
+		with the bit to load dx2rc at the end.
+		'''
+		SHELLRC = (HOME + '/.bashrc')
+		f = open(SHELLRC,"r")
+		bashrcfile = f.read()
+		f.close()
+		if files.loaddx2rc not in bashrcfile:
+			f = open(SHELLRC, "w")
+			f.write(bashrcfile + loaddx2rc)
+			f.close()
+
+
 
 	def editshellrc():
 		tools.subtitle('Editing Shells rc file')
@@ -205,7 +247,6 @@ class install():
 		tools.titlebar('DX2 Setup', 'bg', 'fg')
 		install.dirs()
 		install.dx2rc()
-
 
 
 #\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m

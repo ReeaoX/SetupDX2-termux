@@ -187,7 +187,7 @@ Do you want to install DX2 now?
 		elif ans == 'N':
 			print('exiting...')
 
-class install():
+class install:
 	def dirs():
 		tools.subtitle('Setting up directories:')
 		funcs.checkdirs(DX2)
@@ -226,27 +226,30 @@ class install():
 		f.close()
 		if files.loaddx2rc not in bashrcfile:
 			f = open(SHELLRC, "w")
-			f.write(bashrcfile + loaddx2rc)
+			f.write(bashrcfile + files.loaddx2rc)
 			f.close()
 
 
 
 	def editshellrc():
-		tools.subtitle('Editing Shells rc file')
-		print(' \033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m Detecting Shell', end='')
-		if os.getenv('BASH') is not None:
-			SHELL = 'bash'
-			SHELLRC = (HOME + '/.' + str(SHELL) + 'rc')
-		elif os.getenv('ZSH') is not None:
-			SHELL = 'zsh'
-			SHELLRC = (HOME + '/.' + str(SHELL) + 'rc')
-		else:
-			print('Shell not found')
+		install.bakbashrc()
+		install.editbashrc()
+#		tools.subtitle('Editing Shells rc file')
+#		print(' \033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m Detecting Shell', end='')
+#		if os.getenv('BASH') is not None:
+#			SHELL = 'bash'
+#			SHELLRC = (HOME + '/.' + str(SHELL) + 'rc')
+#		elif os.getenv('ZSH') is not None:
+#			SHELL = 'zsh'
+#			SHELLRC = (HOME + '/.' + str(SHELL) + 'rc')
+#		else:
+#			print('Shell not found')
 
 	def install():
 		tools.titlebar('DX2 Setup', 'bg', 'fg')
 		install.dirs()
 		install.dx2rc()
+		install.editshellrc()
 
 
 #\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m

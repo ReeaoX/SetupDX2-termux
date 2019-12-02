@@ -1,0 +1,4 @@
+alias n=nano
+alias e=echo
+alias less='less -r'
+alias more='more -d'

@@ -1,0 +1,4 @@
+cd(){
+	builtin cd $*
+	LC_COLLATE='C' \ls -ACw $COLUMNS --color=always --group-directories-first
+}

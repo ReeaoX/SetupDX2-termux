@@ -1,0 +1,12 @@
+export LS_OPTS="-Cw \$COLUMNS --color=always --group-directories-first"
+export LC_COLLATE='C'
+
+alias ls="\ls $LS_OPTS"
+alias l=ls
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
+alias lal='ls -lA'
+alias ld='ls -d */'
+alias lda='ls -d {*/,.*/}'
+alias lad='ls -d {*/,.*/}'

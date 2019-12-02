@@ -1,0 +1,10 @@
+alias gs='git status'
+alias gb='git branch'
+alias ga='git add'
+alias gc='git clone'
+alias gcom='git commit -m'
+alias gpull='git pull'
+alias gpush='git push -u origin'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias lg=lazygit

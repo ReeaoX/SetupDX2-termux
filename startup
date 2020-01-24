@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+import os, sys, shutil, random, re, datetime
+
+DATE = (' \033[00;01m' + datetime.datetime.today().strftime('%c') + '\033[m ')
+regex = re.compile(r"\033\[[;\d]*[A-Za-z]")
+MACHINE, NODENAME, RELEASE, SYSTEM, VERSION = os.uname()
+USER = os.getenv('USER')						# Get USERNAME
+COLS, LINES = shutil.get_terminal_size()				# Get screen size
+DASHCHAR = '─'								# Sets dash
+DASHCOLOR = ('\033[38;5;' + str(random.randint(16,232)) + 'm')		# randomly color dash
+
+Shell = os.getenv('SHELL')						# get value for $SHELL
+
+if '/usr/bin/' in Shell:
+	Shell = Shell.replace('/usr/bin/','')
+elif '/bin/' in Shell:
+	Shell = Shell.replace('/bin/','')
+
+#USER = (' User: ' + USER + ' ')
+
+USERHOST = (' \033[01;38;5;46m' + USER + '\033[38;5;15m @ \033[38;5;46m' + NODENAME + '\033[m ')
+Shell = (' \033[00;01;38;5;196mShell\033[00;01m: ' + Shell.upper() + '\033[m ')
+
+def drawline(x,y,z):
+	"""
+	Draws a full line
+	"""
+	print('\033c\r',end='')
+	print(DASHCOLOR + '\033[01m' + DASHCHAR * COLS + '\033[m' + '\r\033[1C' + Shell,end='')
+	print('\r\033[1C' + str(x),end='')
+	print('\r\033[' + str(int((COLS - len(regex.sub("",str(y))))/2)) + 'C' + str(y),end='')
+	print('\r\033[' + str(int(COLS - len(regex.sub("",str(z)))-1)) + 'C' + str(z),end='')
+	print('\n')
+
+#print(Shell.upper)
+drawline(USERHOST, Shell, DATE)

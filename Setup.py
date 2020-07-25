@@ -121,6 +121,85 @@ class tools():
 		del subtitle
 
 
+class addons:
+	class bin:
+		colormap = (r"""#!/usr/bin/env python3
+
+import sys, os
+
+_VERSION_ = "1.0"
+
+initcount = 0
+
+def cmap():
+	print('[00;01mBasic Colors: [m')
+	initcount = 0
+	count = 7
+	while count >= 0:
+		print('[m' + str(initcount).zfill(2) + ':[38;5;16;4;48;5;' + str(initcount) + 'm  [m ',end='')
+		initcount += 1
+		count -= 1
+	print('')
+	count = 7
+	while count >= 0:
+		print('[m' + str(initcount).zfill(2) + ':[38;5;16;4;48;5;' + str(initcount) + 'm  [m ',end='')
+		initcount += 1
+		count -= 1
+	print('')
+	print('')
+	print('[00;01mAdvanced colors: [m')
+	initcount = 16
+	while initcount < 232:
+		countb = 6
+		while countb > 0:
+			count = 6
+			while count > 0:
+				print('[m' + str(initcount).zfill(3) + ':[38;5;16;4;48;5;' + str(initcount) + 'm   [m ',end='')
+				initcount += 1
+				count -= 1
+			countb -= 1
+			print('')
+		print('')
+	print('[00;01mShades of grey: [m')
+	while initcount < 256:
+		count = 6
+		while count > 0:
+			print('[m   ' + '[' + str(len(str(initcount))) + 'D' + str(initcount) + ':[38;5;16;4;48;5;' + str(initcount) + 'm   [m ',end='')
+			initcount += 1
+			count -= 1
+		print('')
+
+
+cmap()
+""")
+	class functions:
+		cd = (r"""function cd(){
+	builtin cd $*
+	LC_COLLATE='C' \ls --color=always --group-directories-first -ALF -w $COLUMNS
+	echo
+}
+""")
+	class aliases:
+		ls = (r"""export LS_ARG="--color=always --group-directories-first -F"
+
+alias {l,ls}="\ls $LS_ARG -L"
+alias {L,LS}="\ls $LS_ARG"
+alias LS="\ls $LS_ARG"
+alias ll="ls -l"
+alias la="ls -A"
+""")
+		git = (r"""alias gs="git status"
+alias gpm="git push -u origin master"
+alias gpull="git pull"
+alias gcom="git commit -m"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+""")
+		misc = (r"""alias lg=lazygit
+#alias webserver="python -m SimpleHTTPServer"
+""")
+		colormap = (r"""alias colormap="colormap | \less -er -P '[46m[38;5;16m  -- [47mHit [42m[[47mPGDN[42m][[47mPGUP[42m][47m to scroll or [41m[[47mQ[41m][47m to quit [46m--[m'"
+""")
 
 class funcs:
 	def checkdirs(x):
@@ -187,6 +266,17 @@ Do you want to install DX2 now?
 			print('exiting...')
 
 class install:
+	def installaddons(x, y, z):
+		"""
+		syntax: installaddons(addons.bin.colormap, DX2BIN, 'colormap.aka')
+		"""
+		FILE = x
+		DIR = y
+		FILENAME = z
+		PATH = (DIR + '/' + FILENAME)
+		f = open(PATH, 'w')
+		f.write(FILE)
+		f.close()
 	def dirs():
 		tools.subtitle('Setting up directories:')
 		funcs.checkdirs(DX2)
@@ -251,9 +341,38 @@ class install:
 		install.editshellrc()
 
 
+
 #\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m
 #\r\033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m]\033[m
 #\r\033[00;01;38;5;196m[\033[00;01m✖\033[00;01;38;5;196m]\033[m
 
 #funcs.detectdx()
 install.install()
+
+
+def auto():
+	"""
+		FIRST SUB
+	"""
+	init = 0
+	print(WAIT + 'TESTING ONE')
+	init = init + 1
+	print('\t' + WAIT + 'TESTING SUB A', end='')
+	time.sleep(1)
+	print('\r\t' + DONE)
+	init = init + 1
+	print('\t' + WAIT + 'TESTING SUB B', end='')
+	time.sleep(1)
+	print('\r\t' + DONE)
+	init = init + 1
+	print('\t' + WAIT + 'TESTING SUB C', end='')
+	time.sleep(1)
+	print('\r\t' + DONE)
+	print('\033[' + str(init + 1) + 'A\r' + DONE + '\033[' + str(init) + 'B')
+	"""
+		SECOND SUB
+	"""
+	init = 0
+	
+
+auto()

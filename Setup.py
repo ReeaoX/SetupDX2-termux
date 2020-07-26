@@ -361,6 +361,10 @@ class install:
 
 #funcs.detectdx()
 install.install()
+<<<<<<< HEAD
+
+
+=======
 #
 #
 #def auto():
@@ -389,3 +393,4 @@ install.install()
 #	
 #
 #auto()
+>>>>>>> 7386154010b9ccd214b88f0e7aaa15c741fc89cd

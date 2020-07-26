@@ -230,12 +230,42 @@ alias gcob="git checkout -b"
 		colormap = (r"""alias colormap="colormap | \less -er -P '[46m[38;5;16m  -- [47mHit [42m[[47mPGDN[42m][[47mPGUP[42m][47m to scroll or [41m[[47mQ[41m][47m to quit [46m--[m'"
 """)
 
+def asktoinstall():
+	print('\033c\n\n  Do you want to install all the addons ?\n\n  [Y/n]', end='')
+	installyn = input(': ')
+	print('\033c\n')
+	if installyn == 'Y':
+		print('\033[00;01;38;5;196m Ａｕｔｏｍａｔｉｃａｌｌｙ  Ｉｎｓｔａｌｌｉｎｇ  Ａｄｄ－ｏｎ  Ｆｉｌｅｓ \033[38;5;15m...')
+		install.automatic()
+		print('\r  ' + DONE + '\n')
+	elif installyn == 'y':
+		print('\033[00;01;38;5;196m Automatically installing all add-on filesＡｕｔｏｍａｔｉｃａｌｌｙ  Ｉｎｓｔａｌｌｉｎｇ  Ａｄｄ－ｏｎ  Ｆｉｌｅｓ \033[38;5;15m...')
+#		print('Automatically installing all add-on files ...')
+		install.automatic()
+		print('\r  ' + DONE + '\n')
+	elif installyn == '':
+		print('\033[00;01;38;5;196m Ａｕｔｏｍａｔｉｃａｌｌｙ  Ｉｎｓｔａｌｌｉｎｇ  Ａｄｄ－ｏｎ  Ｆｉｌｅｓ \033[38;5;15m...')
+#		print('Automatically installing all add-on files ...')
+		install.automatic()
+#		print('\r  ' + DONE + '\n')
+	elif installyn == 'n':
+		print('\n  Exiting ...\n')
+		return
+	elif installyn == 'N':
+		print('\n  Exiting ...\n')
+		exit
+	else:
+		print('Invalid selection')
+		exit
+
+
 
 #install.installaddons(addons.aliases.ls, (DX2AKA + '/ls.aka'), 'n')
-install.automatic()
+#install.automatic()
 #titlebar('SetupDX2 - Addons Install')
 #options('1', 'Testing', '51')
 #options('2', 'Testing', '51')
 
+asktoinstall()
 
 

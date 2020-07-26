@@ -123,6 +123,12 @@ class tools():
 
 class addons:
 	class bin:
+		dx2-uninstall = (r"""#!/bin/bash
+
+mv $DX2BAK/.bashrc $HOME/.bashrc
+rm $HOME/.dx2rc
+rm -rf $HOME/.DX2/
+""")
 		colormap = (r"""#!/usr/bin/env python3
 
 import sys, os
@@ -334,10 +340,17 @@ class install:
 #		else:
 #			print('Shell not found')
 
+	def copyuninstall():
+		f = open(DX2BIN + '/dx2-uninstall')
+		f.write(addons.bin.dx2-uninstall)
+		f.close()
+		os.chmod((DX2BIN + '/dx2-uninstall'), 0o766)
+
 	def install():
 		tools.titlebar('DX2 Setup', 'bg', 'fg')
 		install.dirs()
 		install.dx2rc()
+		install.copyuninstall()
 		install.editshellrc()
 
 

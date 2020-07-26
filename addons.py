@@ -134,6 +134,22 @@ case $REPLY in
 	*)
 		echo -e "Invalid key"
 		;;
+esac#!/bin/bash
+
+echo -e "\033c\n  Do you want to start a web server & serve\n  the files from this dir (\033[00;01;36m$PWD\033[m)?\n"
+echo -e -n "  \033[00;01m[\033[32mY\033[00;01m/\033[38;5;196mn\033[00;01m]\033[m: "
+read
+case $REPLY in
+	'y'|'Y'|'')
+		echo -e "\033c\n  Starting HTTP Server...\n\n  Hit \033[00;01;38;5;196m[\033[00;01mCTRL\033[00;01;38;5;196m]\033[00;01m + \033[00;01;38;5;196m[\033[00;01mc\033[00;01;38;5;196m]\033[00;01m to stop.\n"
+		python -m SimpleHTTPServer
+		;;
+	'n'|'N')
+		return
+		;;
+	*)
+		echo -e "Invalid key"
+		;;
 esac
 """)
 		colormap = (r"""#!/usr/bin/env python3

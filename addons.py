@@ -69,6 +69,10 @@ class install:
 		print('\t' + WAIT + 'Writing colormap\'s script ...', end='')
 		install.installaddons(addons.bin.colormap, DX2BIN, 'colormap')
 		print('\r\t' + DONE)
+		init = init + 1
+		print('\t' + WAIT + 'Writing webserver\'s script ...', end='')
+		install.installaddons(addons.bin.webserver, DX2BIN, 'webserver')
+		print('\r\t' + DONE)
 		print('\033[' + str(init + 1) + 'A\r' + DONE + '\033[' + str(init) + 'B')
 		"""
 			SECOND SUB
@@ -109,10 +113,29 @@ class install:
 		print('\n' + WAIT + '\033[38;5;51mSetting permission for executable scripts \033[38;5;15m...')
 		install.chmodbinfiles()
 		print('\n')
-
+#	def advancedinstall():
+#		
 
 class addons:
 	class bin:
+		webserver = (r"""#!/bin/bash
+
+echo -e "\nStart HTTP server and serve files from \033[00;01;36m$PWD\033[m?"
+echo -e -n "\033[00;01m[\033[32mY\033[00;01m/\033[38;5;196mn\033[00;01m]\033[m: "
+read
+case $REPLY in
+	'y'|'Y'|'')
+		echo -e "\nStarting HTTP Server...\n\nHit \033[00;01;38;5;196m[\033[00;01mCTRL\033[00;01;38;5;196m]\033[00;01m + \033[00;01;38;5;196m[\033[00;01mc\033[00;01;38;5;196m]\033[00;01m to stop.\n"
+		python -m SimpleHTTPServer
+		;;
+	'n'|'N')
+		return
+		;;
+	*)
+		echo -e "Invalid key"
+		;;
+esac
+""")
 		colormap = (r"""#!/usr/bin/env python3
 
 import sys, os
@@ -197,7 +220,6 @@ install.automatic()
 #titlebar('SetupDX2 - Addons Install')
 #options('1', 'Testing', '51')
 #options('2', 'Testing', '51')
-
 
 
 

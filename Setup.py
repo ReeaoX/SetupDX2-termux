@@ -123,7 +123,7 @@ class tools():
 
 class addons:
 	class bin:
-		dx2-uninstall = (r"""#!/bin/bash
+		uninstall = (r"""#!/bin/bash
 
 mv $DX2BAK/.bashrc $HOME/.bashrc
 rm $HOME/.dx2rc
@@ -341,8 +341,8 @@ class install:
 #			print('Shell not found')
 
 	def copyuninstall():
-		f = open(DX2BIN + '/dx2-uninstall')
-		f.write(addons.bin.dx2-uninstall)
+		f = open((DX2BIN + '/dx2-uninstall'), 'w')
+		f.write(addons.bin.uninstall)
 		f.close()
 		os.chmod((DX2BIN + '/dx2-uninstall'), 0o766)
 
@@ -361,31 +361,31 @@ class install:
 
 #funcs.detectdx()
 install.install()
-
-
-def auto():
-	"""
-		FIRST SUB
-	"""
-	init = 0
-	print(WAIT + 'TESTING ONE')
-	init = init + 1
-	print('\t' + WAIT + 'TESTING SUB A', end='')
-	time.sleep(1)
-	print('\r\t' + DONE)
-	init = init + 1
-	print('\t' + WAIT + 'TESTING SUB B', end='')
-	time.sleep(1)
-	print('\r\t' + DONE)
-	init = init + 1
-	print('\t' + WAIT + 'TESTING SUB C', end='')
-	time.sleep(1)
-	print('\r\t' + DONE)
-	print('\033[' + str(init + 1) + 'A\r' + DONE + '\033[' + str(init) + 'B')
-	"""
-		SECOND SUB
-	"""
-	init = 0
-	
-
-auto()
+#
+#
+#def auto():
+#	"""
+#		FIRST SUB
+#	"""
+#	init = 0
+#	print(WAIT + 'TESTING ONE')
+#	init = init + 1
+#	print('\t' + WAIT + 'TESTING SUB A', end='')
+#	time.sleep(1)
+#	print('\r\t' + DONE)
+#	init = init + 1
+#	print('\t' + WAIT + 'TESTING SUB B', end='')
+#	time.sleep(1)
+#	print('\r\t' + DONE)
+#	init = init + 1
+#	print('\t' + WAIT + 'TESTING SUB C', end='')
+#	time.sleep(1)
+#	print('\r\t' + DONE)
+#	print('\033[' + str(init + 1) + 'A\r' + DONE + '\033[' + str(init) + 'B')
+#	"""
+#		SECOND SUB
+#	"""
+#	init = 0
+#	
+#
+#auto()

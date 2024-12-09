@@ -1,30 +1,29 @@
-httpserver(){
+httpserver() {
 	while true; do
 		clear
-		echo -e "\033[00;01m Simple HTTP Server\033[m"
+		printf "\033[00;01m Simple HTTP Server\033[m\n"
 		printf "\033[01;31m⎺\033[m%.s" $(seq 1 $COLUMNS)
-		echo
+		printf "\n"
 		echo -e "\033[mStart a \"\033[1;36mSimple HTTP Server\033[m\" here (\033[03;33m$PWD\033[m)\n\nand serve the following contents?:\033"
 		ls;
-		echo
+		printf "\n"
 		printf "\033[01;31m⎼\033[m%.s" $(seq 1 $COLUMNS)
-		echo
-		echo -en "\n\033[01m[\033[00;32mY\033[00;01m]\033[mes \033[01m| \033[00;01m[\033[00;31mn\033[00;01m]\033[mo: "
+		printf "\n"
+		printf "\n\033[01m[\033[00;32mY\033[00;01m]\033[mes \033[01m| \033[00;01m[\033[00;31mn\033[00;01m]\033[mo: "
 		read -n 1
 		case $REPLY in
-			'Y'|'y'|'')
+			"Y"|"y"|"")
 				echo
 				python -m SimpleHTTPServer
 				;;
-			'n'|'N')
-				echo -e "\n\nQuiting...\n"
+			"n"|"N")
+				printf "\nQuiting...\n"
 				return
 				;;
 			*)
-				echo -e "\n\nERROR - Invalid key\n\n[ Hit any key to continue ]\n"
+				printf "\nERROR - Invalid key\n\n[ Hit any key to continue ]\n"
 				read -n 1
 				;;
 		esac
 	done
 }
-

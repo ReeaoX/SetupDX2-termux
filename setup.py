@@ -5,6 +5,7 @@ try:
   from decouple import config as conf
   from rich.prompt import Confirm as ryn
   from dotenv import find_dotenv as dotfind, load_dotenv as dotload
+  from os import mkdir as mkPath
   from pathlib import Path as pydir, PurePath as puredir
   from click import clear as cls
   import re
@@ -132,13 +133,13 @@ class funcs:
 		shortdir = re.sub(HOME, '~', dirs)
 		print('\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m Creating \033[38;5;51m' + str(shortdir), end='')
 
-		if os.path.exists(dirs) == True:
+		if pydir(dirs).exists() == True:
                         print('\r \033[00;01;38;5;46m[\033[00;01m✓\033[00;01;38;5;46m] \033[m')
                         # print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
                         # print('\r \033[00;01;38;5;51m[\033[00;01mi\033[00;01;38;5;51m] \033[m')
                         # print('\t\033[00;01;32mDirectory already exists.')
-		else:
-			os.mkdir(dirs)
+		elif pydir(dirs).exists() == False:
+			mkPath(dirs)
                         print('\r \033[00;01;38;5;46m[\033[00;01m✓\033[00;01;38;5;46m] \033[m')
 			# print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
 		del dirs
@@ -148,27 +149,32 @@ class funcs:
 		print("Checking system for any previous versions of DX2 Setup: ")
 		print('\n\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m\tChecking for DX2 vars.', end='')
 
-		if os.getenv('DX2VERSION') is not None:
+                DX2_detectdx_LOCATE = puredir(HOME, ".DX2")
+                DX2_detectdx_LOCATE_STR = str(DX2_detectdx_LOCATE)
+                dx2rc_detectdx_LOCATE = puredir(HOME, ".dx2rc")
+                dx2rc_detectdx_LOCATE_STR = str(dx2rc_detectdx_LOCATE)
+
+		if conf("DX2VERSION") is not None:
 			print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
 			init = int(init) + int('1')
-		else:
+		elif conf("DX2VERSION") is None:
 			print('\r \033[00;01;38;5;196m[\033[00;01m✖\033[00;01;38;5;196m] \033[m')
 			init = int(init) + int('0')
 
 		print('\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m\tChecking for DX2 directories.', end='')
-		if os.path.exists(HOME + '.DX2') == True:
+		if pydir(DX2_detectdx_LOCATE_STR).exists() == True:
 			print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
 			init = int(init) + int('1')
-		else:
+		elif pydir(DX2_detectdx_LOCATE_STR).exists() == False:
 			print('\r \033[00;01;38;5;196m[\033[00;01m✖\033[00;01;38;5;196m] \033[m')
                         # installyn = '1'
 			init = int(init) + int('0')
 
 		print('\033[00;01;38;5;190m[\033[00;01m⌛\033[00;01;38;5;190m]\033[m\tChecking for ~/.dx2rc.', end='')
-		if os.path.exists(HOME + '/.dx2rc') == True:
+		if pydir(dx2rc_detectdx_LOCATE_STR).exists() == True:
 			print('\r \033[00;01;38;5;46m[\033[00;01m✔\033[00;01;38;5;46m] \033[m')
 			init = int(init) + int('1')
-		else:
+		elif pydir(dx2rc_detectdx_LOCATE_STR).exists() == False:
 			print('\r \033[00;01;38;5;196m[\033[00;01m✖\033[00;01;38;5;196m] \033[m')
                         # installyn = '1'
 			init = int(init) + int('0')
@@ -178,7 +184,7 @@ class funcs:
 			funcs.asktoinstall()
 		elif init == int('3'):
 			print("\nDX2 detected / installed", end="\r\n")
-		else:
+		elif not init == int('3'):
 			print("\nDX2 found, but some elements are missing", end="\r\n")
 			funcs.asktoinstall()
 

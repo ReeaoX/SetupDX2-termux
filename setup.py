@@ -2,7 +2,6 @@
 ImportError_message = "To setup DX2 runtime, Python modules is required."
 
 try:
-  import os
   from decouple import config as conf
   from rich.prompt import Confirm as ryn
   from dotenv import find_dotenv as dotfind, load_dotenv as dotload

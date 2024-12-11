@@ -8,6 +8,7 @@ try:
   from os import mkdir as mkPath
   from pathlib import Path as pydir, PurePath as puredir
   from click import clear as cls
+  import sys as rsys
   import re
   from shutil import copy2 as pycopy
 except ImportError:
